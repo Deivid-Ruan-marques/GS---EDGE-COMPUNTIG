@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "author": "Deivid",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-v1", "id": "esp32", "top": -10, "left": 100, "attrs": { "network": { "enabled": true } } },
+    { "type": "wokwi-dht22", "id": "dht", "top": 60, "left": 300, "attrs": { "humidity": 45, "temperature": 26 } },
+    { "type": "wokwi-hc-sr04", "id": "ultra", "top": 60, "left": 480 },
+    { "type": "wokwi-led", "id": "ledRed", "top": 220, "left": 320, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "ledGreen", "top": 220, "left": 380, "attrs": { "color": "green" } },
+    { "type": "wokwi-buzzer", "id": "buzz", "top": 220, "left": 440 },
+    { "type": "wokwi-button", "id": "btn", "top": 220, "left": 500 }
+  ],
+  "connections": [
+    ["esp32:15", "dht:DATA", "green", ["v0"]],
+    ["esp32:3V3", "dht:VCC", "red", ["v0"]],
+    ["esp32:GND", "dht:GND", "black", ["v0"]],
+
+    ["esp32:5", "ultra:TRIG", "yellow", ["v0"]],
+    ["esp32:18", "ultra:ECHO", "orange", ["v0"]],
+    ["esp32:3V3", "ultra:VCC", "red", ["v0"]],
+    ["esp32:GND", "ultra:GND", "black", ["v0"]],
+
+    ["esp32:4", "ledRed:K", "black", ["v0"]],
+    ["esp32:GND", "ledRed:A", "red", ["v0"]],
+    ["esp32:2", "ledGreen:K", "black", ["v0"]],
+    ["esp32:GND", "ledGreen:A", "red", ["v0"]],
+
+    ["esp32:13", "buzz:SIG", "purple", ["v0"]],
+    ["esp32:3V3", "buzz:VCC", "red", ["v0"]],
+    ["esp32:GND", "buzz:GND", "black", ["v0"]],
+
+    ["esp32:14", "btn:1", "blue", ["v0"]],
+    ["esp32:GND", "btn:2", "black", ["v0"]]
+  ]
+}
